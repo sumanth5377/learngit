@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A Little Reminder</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: #263044;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(255, 218, 190, .75), transparent 32%),
+        radial-gradient(circle at 85% 80%, rgba(196, 215, 255, .8), transparent 35%),
+        linear-gradient(135deg, #fff8f1, #f4f3ff);
+      cursor: pointer;
+      padding: 24px;
+    }
+    .card {
+      width: min(620px, 100%);
+      padding: clamp(38px, 8vw, 72px) 28px;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,.85);
+      border-radius: 30px;
+      background: rgba(255,255,255,.66);
+      box-shadow: 0 24px 80px rgba(67, 73, 115, .12);
+      backdrop-filter: blur(16px);
+      transition: transform .35s ease, box-shadow .35s ease;
+    }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 30px 90px rgba(67,73,115,.16); }
+    .sparkle { font-size: 30px; margin-bottom: 18px; }
+    h1 {
+      margin: 0 0 14px;
+      font-size: clamp(42px, 9vw, 68px);
+      letter-spacing: -3px;
+      font-weight: 750;
+    }
+    .intro { margin: 0; color: #697187; font-size: 17px; line-height: 1.7; }
+    .hint {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 34px;
+      padding: 11px 17px;
+      border-radius: 999px;
+      background: #fff;
+      color: #777e91;
+      font-size: 13px;
+      box-shadow: 0 5px 20px rgba(40,45,70,.06);
+      animation: pulse 2s infinite;
+    }
+    .message { display: none; animation: appear .65s ease both; }
+    .message h2 {
+      margin: 0 auto 18px;
+      max-width: 500px;
+      font-size: clamp(27px, 5.5vw, 42px);
+      line-height: 1.25;
+      letter-spacing: -1.2px;
+    }
+    .message p { color: #697187; font-size: 17px; line-height: 1.7; margin: 0; }
+    .bye { margin-top: 28px !important; font-size: 21px !important; font-weight: 700; color: #555d78 !important; }
+    .show-message .intro, .show-message .hint, .show-message .sparkle, .show-message h1 { display: none; }
+    .show-message .message { display: block; }
+    .heart { display: block; font-size: 34px; margin-bottom: 20px; }
+    @keyframes appear { from { opacity: 0; transform: translateY(14px) scale(.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+    @keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.04); } }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
+  </style>
+</head>
+<body>
+  <main class="card" id="card" aria-live="polite">
+    <div class="sparkle">✨</div>
+    <h1>Hiii!</h1>
+    <p class="intro">A tiny little pause, just for you.</p>
+    <div class="hint">Click anywhere to open your reminder <span>🤍</span></div>
+
+    <section class="message">
+      <span class="heart">🌷💛</span>
+      <h2>You are enough, and you’re doing good. Keep going — you’re going to reach even greater heights. ✨</h2>
+      <p>One step at a time. Be proud of how far you’ve come. 🦋</p>
+      <p class="bye">Byeeee! Take care of yourself. 💖👋</p>
+    </section>
+  </main>
+  <script>
+    const card = document.getElementById('card');
+    document.addEventListener('click', () => {
+      card.classList.add('show-message');
+    }, { once: true });
+  </script>
+</body>
+</html>
